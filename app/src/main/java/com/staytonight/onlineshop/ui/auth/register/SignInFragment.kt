@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.staytonight.onlineshop.R
 import com.staytonight.onlineshop.base.binding.BindingFragment
 import com.staytonight.onlineshop.base.extensions.hide
+import com.staytonight.onlineshop.base.extensions.isValidEmail
 import com.staytonight.onlineshop.base.extensions.show
 import com.staytonight.onlineshop.databinding.FragmentSignInBinding
 import com.staytonight.onlineshop.ui.main.MainActivity
@@ -57,7 +58,7 @@ class SignInFragment : BindingFragment<FragmentSignInBinding>(FragmentSignInBind
                 val lastName = etLastName.text.toString()
                 val email = etEmail.text.toString()
 
-                if (firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty())
+                if (firstName.isNotEmpty() && lastName.isNotEmpty() && email.isValidEmail())
                     viewModel.register(firstName, lastName, email)
                 else
                     showError()

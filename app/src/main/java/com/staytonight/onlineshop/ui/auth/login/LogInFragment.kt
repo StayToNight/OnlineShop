@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.staytonight.onlineshop.R
 import com.staytonight.onlineshop.base.binding.BindingFragment
 import com.staytonight.onlineshop.base.extensions.hide
+import com.staytonight.onlineshop.base.extensions.isValidEmail
 import com.staytonight.onlineshop.base.extensions.show
 import com.staytonight.onlineshop.databinding.FragmentLogInBinding
 import com.staytonight.onlineshop.ui.main.MainActivity
@@ -22,7 +23,7 @@ class LogInFragment : BindingFragment<FragmentLogInBinding>(FragmentLogInBinding
         super.onViewCreated(view, savedInstanceState)
 
         setupListeners()
-        setupObservers() //todo auth state
+        setupObservers()
     }
 
     private fun setupListeners() {
@@ -54,7 +55,7 @@ class LogInFragment : BindingFragment<FragmentLogInBinding>(FragmentLogInBinding
                 val email = etEmail.text.toString()
                 val password = etPassword.getText()
 
-                if (email.isNotEmpty() && password.isNotEmpty())
+                if (email.isValidEmail() && password.isNotEmpty())
                     viewModel.login(email, password)
                 else
                     showError()
